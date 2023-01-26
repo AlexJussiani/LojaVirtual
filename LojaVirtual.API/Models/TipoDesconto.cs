@@ -1,4 +1,4 @@
-﻿namespace Ci.Calcados.API.Models
+﻿namespace LojaVirtual.API.Models
 {
     public enum TipoDesconto
     {

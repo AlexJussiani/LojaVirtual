@@ -1,8 +1,8 @@
 ﻿using AutoMapper;
-using Ci.Calcados.API.Models;
-using Ci.Calcados.API.ViewModels;
+using LojaVirtual.API.Models;
+using LojaVirtual.API.ViewModels;
 
-namespace Ci.Calcados.API.Configuration
+namespace LojaVirtual.API.Configuration
 {
     public class AutomapperConfig : Profile
     {

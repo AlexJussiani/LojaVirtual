@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Ci.Core.Data
+namespace Loja.Core.Data
 {
     public abstract class Message
     {

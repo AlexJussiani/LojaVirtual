@@ -1,10 +1,10 @@
-﻿using Ci.Calcados.API.Models;
-using Ci.Core.Data;
+﻿using Loja.Core.Data;
+using LojaVirtual.API.Models;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace Ci.Calcados.API.Data.Repository
+namespace LojaVirtual.API.Data.Repository
 {
     public interface IProdutoRepository : IRepository<Produto>
     {

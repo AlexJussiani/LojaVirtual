@@ -1,7 +1,7 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace Ci.Calcados.API.Migrations
+namespace LojaVirtual.API.Migrations
 {
     public partial class adicionando_tabela_tamanho : Migration
     {

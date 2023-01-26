@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace Ci.Calcados.API.Migrations
+namespace LojaVirtual.API.Migrations
 {
     public partial class alterando_tabela_cores : Migration
     {

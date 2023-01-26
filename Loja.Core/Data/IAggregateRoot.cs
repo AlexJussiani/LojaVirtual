@@ -1,4 +1,4 @@
-﻿namespace Ci.Core.Data
+﻿namespace Loja.Core.Data
 {
     public interface IAggregateRoot{}
 }

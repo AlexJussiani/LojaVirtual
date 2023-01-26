@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Ci.Core.Data
+namespace Loja.Core.Data
 {
     public interface IRepository<T> : IDisposable where T : IAggregateRoot
     {

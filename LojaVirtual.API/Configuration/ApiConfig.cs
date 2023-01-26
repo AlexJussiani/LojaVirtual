@@ -1,4 +1,4 @@
-﻿using Ci.Calcados.API.Data;
+﻿using LojaVirtual.API.Data;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -6,7 +6,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
-namespace Ci.Calcados.API.Configuration
+namespace LojaVirtual.API.Configuration
 {
     public static class ApiConfig
     {

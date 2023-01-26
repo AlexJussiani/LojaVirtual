@@ -1,4 +1,4 @@
-using Ci.Calcados.API.Configuration;
+using LojaVirtual.API.Configuration;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -14,7 +14,7 @@ using System.Linq;
 using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
-namespace Ci.Calcados.API
+namespace LojaVirtual.API
 {
     public class Startup
     {
@@ -49,7 +49,7 @@ namespace Ci.Calcados.API
                   //  .ReferenceHandler = ReferenceHandler.Preserve);
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "Ci.Calcados.API", Version = "v1" });
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "LojaVirtual.API", Version = "v1" });
             });
 
             services.RegisterServices();
@@ -62,7 +62,7 @@ namespace Ci.Calcados.API
             {
                 app.UseDeveloperExceptionPage();
                 app.UseSwagger();
-                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Ci.Calcados.API v1"));
+                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "LojaVirtual.API v1"));
             }
 
             app.UseApiConfiguration(env);

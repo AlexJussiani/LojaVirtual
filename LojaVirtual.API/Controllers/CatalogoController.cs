@@ -1,9 +1,9 @@
 ﻿using AutoMapper;
-using Ci.Calcados.API.Data.Repository;
-using Ci.Calcados.API.Models;
-using Ci.Calcados.API.Services;
-using Ci.Calcados.API.ViewModels;
-using Ci.Core.Controllers;
+using Loja.Core.Controllers;
+using LojaVirtual.API.Data.Repository;
+using LojaVirtual.API.Models;
+using LojaVirtual.API.Services;
+using LojaVirtual.API.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -12,7 +12,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
 
-namespace Ci.Calcados.API.Controllers
+namespace LojaVirtual.API.Controllers
 {
    // [Authorize]
     public class CatalogoController : MainController

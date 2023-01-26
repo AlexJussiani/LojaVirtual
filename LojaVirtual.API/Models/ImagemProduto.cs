@@ -1,8 +1,8 @@
-﻿using Ci.Core.Data;
+﻿using Loja.Core.Data;
 using System;
 using System.Text.Json.Serialization;
 
-namespace Ci.Calcados.API.Models
+namespace LojaVirtual.API.Models
 {
     public class ImagemProduto : Entity
     {

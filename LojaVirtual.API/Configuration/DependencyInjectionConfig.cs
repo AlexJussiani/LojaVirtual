@@ -1,10 +1,10 @@
-﻿using Ci.Calcados.API.Data;
-using Ci.Calcados.API.Data.Repository;
-using Ci.Calcados.API.Services;
+﻿using LojaVirtual.API.Data;
+using LojaVirtual.API.Data.Repository;
+using LojaVirtual.API.Services;
 using MediatR;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace Ci.Calcados.API.Configuration
+namespace LojaVirtual.API.Configuration
 {
     public static class DependencyInjectionConfig
     {

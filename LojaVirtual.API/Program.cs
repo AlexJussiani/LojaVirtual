@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Ci.Calcados.API
+namespace LojaVirtual.API
 {
     public class Program
     {

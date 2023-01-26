@@ -1,4 +1,4 @@
-﻿using Ci.Core.Data;
+﻿using Loja.Core.Data;
 using FluentValidation.Results;
 using System;
 using System.Collections.Generic;
@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Ci.Core.Messages
+namespace Loja.Core.Messages
 {
     public abstract class CommandHandler
     {

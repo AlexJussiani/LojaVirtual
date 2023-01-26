@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
 
-namespace Ci.Core.Data
+namespace Loja.Core.Data
 {
     public interface IUnitOfWork
     {

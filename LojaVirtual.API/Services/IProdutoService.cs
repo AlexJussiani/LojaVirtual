@@ -1,7 +1,7 @@
-﻿using Ci.Calcados.API.Models;
+﻿using LojaVirtual.API.Models;
 using System.Threading.Tasks;
 
-namespace Ci.Calcados.API.Services
+namespace LojaVirtual.API.Services
 {
     public interface IProdutoService
     {

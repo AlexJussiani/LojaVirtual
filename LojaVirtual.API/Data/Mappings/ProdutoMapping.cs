@@ -1,8 +1,8 @@
-﻿using Ci.Calcados.API.Models;
+﻿using LojaVirtual.API.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace Ci.Calcados.API.Data.Mappings
+namespace LojaVirtual.API.Data.Mappings
 {
     public class ProdutoMapping : IEntityTypeConfiguration<Produto>
     {

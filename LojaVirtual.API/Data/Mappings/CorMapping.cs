@@ -1,8 +1,8 @@
-﻿using Ci.Calcados.API.Models;
+﻿using LojaVirtual.API.Models;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Microsoft.EntityFrameworkCore;
 
-namespace Ci.Calcados.API.Data.Mappings
+namespace LojaVirtual.API.Data.Mappings
 {
     public class CorMapping : IEntityTypeConfiguration<Cor>
     {

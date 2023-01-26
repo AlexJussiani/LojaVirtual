@@ -1,9 +1,9 @@
-﻿using Ci.Calcados.API.Data.Repository;
-using Ci.Calcados.API.Models;
-using Ci.Core.Messages;
+﻿using LojaVirtual.API.Data.Repository;
+using LojaVirtual.API.Models;
+using Loja.Core.Messages;
 using System.Threading.Tasks;
 
-namespace Ci.Calcados.API.Services
+namespace LojaVirtual.API.Services
 {
     public class ProdutoServices : CommandHandler, IProdutoService
     {

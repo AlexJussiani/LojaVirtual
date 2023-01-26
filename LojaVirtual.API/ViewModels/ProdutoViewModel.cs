@@ -1,10 +1,10 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System;
-using Ci.Calcados.API.Models;
+using LojaVirtual.API.Models;
 using System.Text.Json.Serialization;
 using System.Collections.Generic;
 
-namespace Ci.Calcados.API.ViewModels
+namespace LojaVirtual.API.ViewModels
 {
     public class ProdutoViewModel
     {

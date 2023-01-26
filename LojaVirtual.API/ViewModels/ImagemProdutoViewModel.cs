@@ -1,7 +1,7 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 
-namespace Ci.Calcados.API.ViewModels
+namespace LojaVirtual.API.ViewModels
 {
     public class ImagemProdutoViewModel
     {

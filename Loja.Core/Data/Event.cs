@@ -1,7 +1,7 @@
 ﻿using MediatR;
 using System;
 
-namespace Ci.Core.Data
+namespace Loja.Core.Data
 {
     public class Event : Message, INotification
     {

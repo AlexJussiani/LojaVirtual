@@ -1,12 +1,12 @@
-﻿using Ci.Calcados.API.Models;
-using Ci.Core.Data;
+﻿using LojaVirtual.API.Models;
+using Loja.Core.Data;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Ci.Calcados.API.Data.Repository
+namespace LojaVirtual.API.Data.Repository
 {
     public class ProdutoRepository : IProdutoRepository
     {

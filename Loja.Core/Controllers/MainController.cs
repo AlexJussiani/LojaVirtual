@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using FluentValidation.Results;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
-using Ci.Core.Communication;
+using Loja.Core.Communication;
 
-namespace Ci.Core.Controllers
+namespace Loja.Core.Controllers
 {
     [ApiController]
     public abstract class MainController : Controller

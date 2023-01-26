@@ -1,13 +1,12 @@
-﻿using Ci.Calcados.API.Models;
-using Ci.Core.Data;
+﻿using Loja.Core.Data;
+using LojaVirtual.API.Models;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Logging;
 using System;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Ci.Calcados.API.Data
+namespace LojaVirtual.API.Data
 {
     public class ProdutoContext : DbContext, IUnitOfWork
     {
