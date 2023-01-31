@@ -5,6 +5,9 @@ namespace LojaVirtual.API.Services
 {
     public interface IProdutoService
     {
-        Task Adicionar(Produto produto);
+        Task AdicionarProduto(Produto produto);
+        Task AdicionarMarca(Marca marca);
+        Task AdicionarTipoProduto(TipoProduto tipoProduto);
+        Task AdicionarTamanho(Tamanho tamanho);
     }
 }

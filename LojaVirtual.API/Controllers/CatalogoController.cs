@@ -45,7 +45,7 @@ namespace LojaVirtual.API.Controllers
         }
 
         [HttpPost("catalogo/produtos")]
-        public async Task<ActionResult<ProdutoViewModel>> Adicionar(ProdutoViewModel produtoViewModel)
+        public async Task<ActionResult<ProdutoViewModel>> AdicionarProduto(ProdutoViewModel produtoViewModel)
         {
             if (!ModelState.IsValid) return CustomResponse(ModelState);
 
@@ -56,7 +56,7 @@ namespace LojaVirtual.API.Controllers
             }
 
             produtoViewModel.Imagem = imagemNome;
-            await _produtoService.Adicionar(_mapper.Map<Produto>(produtoViewModel));
+            await _produtoService.AdicionarProduto(_mapper.Map<Produto>(produtoViewModel));
 
             return CustomResponse(produtoViewModel);
         }
@@ -67,6 +67,16 @@ namespace LojaVirtual.API.Controllers
         {
             if (!ModelState.IsValid) return CustomResponse(ModelState);
             return CustomResponse(await _produtoRepository.ObterTodasMarcas());
+        }
+
+        [HttpPost("catalogo/marca")]
+        public async Task<ActionResult<Marca>> AdicionarMarca(Marca marca)
+        {
+            if (!ModelState.IsValid) return CustomResponse(ModelState);
+
+            await _produtoService.AdicionarMarca(marca);
+
+            return CustomResponse(marca);
         }
 
         [HttpGet("catalogo/cores")]
@@ -83,11 +93,31 @@ namespace LojaVirtual.API.Controllers
             return CustomResponse(await _produtoRepository.ObterTodosTipoProduto());
         }
 
+        [HttpPost("catalogo/tipoProduto")]
+        public async Task<ActionResult<Marca>> AdicionarTipoProduto(TipoProduto tipoProduto)
+        {
+            if (!ModelState.IsValid) return CustomResponse(ModelState);
+
+            await _produtoService.AdicionarTipoProduto(tipoProduto);
+
+            return CustomResponse(tipoProduto);
+        }
+
         [HttpGet("catalogo/tamanho")]
         public async Task<IActionResult> ObterTamanhos()
         {
             if (!ModelState.IsValid) return CustomResponse(ModelState);
             return CustomResponse(await _produtoRepository.ObterTodosTamanhos());
+        }
+
+        [HttpPost("catalogo/tamanho")]
+        public async Task<ActionResult<Marca>> AdicionarTamanho(Tamanho tamanho)
+        {
+            if (!ModelState.IsValid) return CustomResponse(ModelState);
+
+            await _produtoService.AdicionarTamanho(tamanho);
+
+            return CustomResponse(tamanho);
         }
 
         private bool UploadArquivo(string arquivo, string imgNome)

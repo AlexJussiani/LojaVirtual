@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Runtime.ConstrainedExecution;
 
 namespace LojaVirtual.API.Data.Repository
 {
@@ -101,14 +102,14 @@ namespace LojaVirtual.API.Data.Repository
             throw new NotImplementedException();
         }
 
-        public void AdicionarCor(Cor tipoProduto)
+        public void AdicionarCor(Cor cor)
         {
-            throw new NotImplementedException();
+            _context.Cor.Add(cor);
         }
 
-        public void AtualizarCor(Cor tipoProduto)
+        public void AtualizarCor(Cor cor)
         {
-            throw new NotImplementedException();
+            _context.Cor.Update(cor);
         }
 
         public async Task<List<Tamanho>> ObterTodosTamanhos()
@@ -123,12 +124,12 @@ namespace LojaVirtual.API.Data.Repository
 
         public void AdicionarTamanho(Tamanho tamanho)
         {
-            throw new NotImplementedException();
+            _context.Tamanho.Add(tamanho);
         }
 
         public void AtualizarTamanho(Tamanho tamanho)
         {
-            throw new NotImplementedException();
+            _context.Tamanho.Update(tamanho);
         }
     }
 }

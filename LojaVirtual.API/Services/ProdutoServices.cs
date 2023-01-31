@@ -13,11 +13,29 @@ namespace LojaVirtual.API.Services
             _produtoRepository = produtoRepository;
         }
 
-        public async Task Adicionar(Produto produto)
+        public async Task AdicionarProduto(Produto produto)
         {
             produto.CalcularValorProduto();
 
             _produtoRepository.AdicionarProduto(produto);
+            await PersistirDados(_produtoRepository.UnitOfWork);
+        }      
+
+        public async Task AdicionarMarca(Marca marca)
+        {
+            _produtoRepository.AdicionarMarca(marca);
+            await PersistirDados(_produtoRepository.UnitOfWork);
+        }
+
+        public async Task AdicionarTipoProduto(TipoProduto tipoProduto)
+        {
+            _produtoRepository.AdicionarTipoProduto(tipoProduto);
+            await PersistirDados(_produtoRepository.UnitOfWork);
+        }
+
+        public async Task AdicionarTamanho(Tamanho tamanho)
+        {
+            _produtoRepository.AdicionarTamanho(tamanho);
             await PersistirDados(_produtoRepository.UnitOfWork);
         }
     }
