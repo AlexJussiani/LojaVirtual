@@ -82,6 +82,19 @@ namespace LojaVirtual.API.Data.Repository
                 .Where(c => c.removido == false).ToListAsync();
         }
 
+        public async Task<List<Produto>> ObterTodosProdutos(int pageSize, int pageIndex, string query = null)
+        {
+            return await _context.Produtos
+                .AsNoTracking()
+                .Include(m => m.Marca)
+                .Include(t => t.TipoProduto)
+                .Include(c => c.Cor)
+                .Include(c => c.Tamanho)
+                .Where(c => c.removido == false)
+                .Skip(pageSize * (pageIndex - 1)).Take(pageSize)
+                .ToListAsync();
+        }
+
         public async Task<List<TipoProduto>> ObterTodosTipoProduto()
         {
             return await _context.TipoProduto.Where(c => c.removido == false).OrderBy(c => c.Nome).ToListAsync();
@@ -130,6 +143,6 @@ namespace LojaVirtual.API.Data.Repository
         public void AtualizarTamanho(Tamanho tamanho)
         {
             _context.Tamanho.Update(tamanho);
-        }
+        }        
     }
 }

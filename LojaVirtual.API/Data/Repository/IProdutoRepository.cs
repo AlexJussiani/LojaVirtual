@@ -10,6 +10,7 @@ namespace LojaVirtual.API.Data.Repository
     {
         //Produto
         Task<List<Produto>> ObterTodosProdutos();
+        Task<List<Produto>> ObterTodosProdutos(int pageSize, int pageIndex, string query = null);
         Task<Produto> ObterProdutoPorId(Guid id);
         void AdicionarProduto(Produto produto);
         void AtualizarProduto(Produto produto);

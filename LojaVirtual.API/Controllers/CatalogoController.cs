@@ -1,11 +1,13 @@
 ﻿using AutoMapper;
 using Loja.Core.Controllers;
+using Loja.Core.Models;
 using LojaVirtual.API.Data.Repository;
 using LojaVirtual.API.Models;
 using LojaVirtual.API.Services;
 using LojaVirtual.API.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.RazorPages;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -33,8 +35,16 @@ namespace LojaVirtual.API.Controllers
         [HttpGet("catalogo/produtos")]
         public async Task<IActionResult> ObterProdutos()
         {
-            //if (!ModelState.IsValid) return CustomResponse(ModelState);
+            if (!ModelState.IsValid) return CustomResponse(ModelState);
             return CustomResponse(_mapper.Map<IEnumerable<ProdutoViewModel>> (await _produtoRepository.ObterTodosProdutos()));
+        }
+
+        [HttpGet("catalogo/paginado")]
+        public async Task<PagedResult<ProdutoViewModel>> ObterProdutos([FromQuery] int ps = 8, [FromQuery] int page = 1, [FromQuery] string q = null)
+        {
+            //if (!ModelState.IsValid) return CustomResponse(ModelState);
+            var teste = _mapper.Map<PagedResult<ProdutoViewModel>>(await ObterPorPagina(ps, page, q));
+            return teste;
         }
 
         [HttpGet("catalogo/produtosPorId/{id}")]
@@ -141,6 +151,19 @@ namespace LojaVirtual.API.Controllers
             System.IO.File.WriteAllBytes(filePath, imageDataByteArray);
 
             return true;
+        }
+
+        private async Task<PagedResult<Produto>> ObterPorPagina(int pageSize, int pageIndex, string query = null)
+        {
+            var produtos = await _produtoRepository.ObterTodosProdutos(pageSize, pageIndex, query);
+            return new PagedResult<Produto>()
+            {
+                List = produtos,
+                TotalResults = _produtoRepository.ObterTodosProdutos().Result.Count,
+                PageIndex = pageIndex,
+                PageSize = pageSize,
+                Query = query
+            };
         }
     }
 }
