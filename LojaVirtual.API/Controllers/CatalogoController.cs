@@ -43,8 +43,15 @@ namespace LojaVirtual.API.Controllers
         public async Task<PagedResult<ProdutoViewModel>> ObterProdutos([FromQuery] int ps = 8, [FromQuery] int page = 1, [FromQuery] string q = null)
         {
             //if (!ModelState.IsValid) return CustomResponse(ModelState);
-            var teste = _mapper.Map<PagedResult<ProdutoViewModel>>(await ObterPorPagina(ps, page, q));
-            return teste;
+            return _mapper.Map<PagedResult<ProdutoViewModel>>(await ObterPorPagina(ps, page, q));
+            
+        }
+
+        [HttpPost("catalogo/filtroPaginado")]
+        public async Task<PagedResult<ProdutoViewModel>> ObterProdutos([FromBody] List<FiltroViewModel> filtros, int ps = 8, int page = 1, string q = null)
+        {
+            //if (!ModelState.IsValid) return CustomResponse(ModelState);
+            return _mapper.Map<PagedResult<ProdutoViewModel>>(await _produtoService.ObterPorPagina(filtros, ps, page, q));            
         }
 
         [HttpGet("catalogo/produtosPorId/{id}")]
@@ -165,5 +172,18 @@ namespace LojaVirtual.API.Controllers
                 Query = query
             };
         }
+
+        //private async Task<PagedResult<Produto>> ObterPorPagina(List<FiltroViewModel> filtros,int pageSize, int pageIndex, string query = null)
+        //{
+        //    var produtos = await _produtoRepository.ObterTodosProdutos(pageSize, pageIndex, query);
+        //    return new PagedResult<Produto>()
+        //    {
+        //        List = produtos,
+        //        TotalResults = _produtoRepository.ObterTodosProdutos().Result.Count,
+        //        PageIndex = pageIndex,
+        //        PageSize = pageSize,
+        //        Query = query
+        //    };
+        //}
     }
 }
