@@ -110,6 +110,14 @@ namespace LojaVirtual.API.Data.Repository
                 .Where(c => idTamanhos.Contains(c.TamanhoId) || idTamanhos.Count == 0)
                 .Where(c => idTipoProdutos.Contains(c.TipoProdutoId) || idTipoProdutos.Count == 0)
                 .Where(c => idGenero.Contains((int)c.Genero) || idGenero.Count == 0)
+                .Where(c =>
+                    c.Nome.ToLower().Contains(query) ||
+                    c.Descricao.ToLower().Contains(query) ||
+                    c.Marca.Nome.ToLower().Contains(query) ||
+                    c.Cor.Nome.ToLower().Contains(query) ||
+                    c.Tamanho.Nome.ToLower().Contains(query) ||
+                    c.TipoProduto.Nome.ToLower().Contains(query) ||
+                    string.IsNullOrEmpty(query))
                 .Skip(pageSize * (pageIndex - 1)).Take(pageSize)
                 .ToListAsync();
         }
