@@ -48,7 +48,7 @@ namespace LojaVirtual.API.Data.Repository
         public void AtualizarTipoProduto(TipoProduto tipoProduto)
         {
             _context.TipoProduto.Update(tipoProduto);
-        }        
+        }
 
         public async Task<Marca> ObterMarcaPorId(Guid id)
         {
@@ -96,7 +96,7 @@ namespace LojaVirtual.API.Data.Repository
                 .ToListAsync();
         }
 
-        public async Task<List<Produto>> ObterTodosProdutosFiltrados(List<Guid> idCores, List<Guid> idMarcas, List<Guid> idTamanhos, List<Guid> idTipoProdutos, List<int> idGenero, int pageSize, int pageIndex, string query = null)
+        public async Task<List<Produto>> ObterTodosProdutosFiltradosOrderDefault(List<Guid> idCores, List<Guid> idMarcas, List<Guid> idTamanhos, List<Guid> idTipoProdutos, List<int> idGenero, int pageSize, int pageIndex, string query = null)
         {
             return await _context.Produtos
                 .AsNoTracking()
@@ -121,6 +121,60 @@ namespace LojaVirtual.API.Data.Repository
                 .Skip(pageSize * (pageIndex - 1)).Take(pageSize)
                 .ToListAsync();
         }
+
+        public async Task<List<Produto>> ObterTodosProdutosFiltradosOrderValorDesc(List<Guid> idCores, List<Guid> idMarcas, List<Guid> idTamanhos, List<Guid> idTipoProdutos, List<int> idGenero, int pageSize, int pageIndex, string query = null)
+        {
+            return await _context.Produtos
+               .AsNoTracking()
+               .Include(m => m.Marca)
+               .Include(t => t.TipoProduto)
+               .Include(c => c.Cor)
+               .Include(c => c.Tamanho)
+               .Where(c => c.removido == false)
+               .Where(c => idCores.Contains(c.CorId) || idCores.Count == 0)
+               .Where(c => idMarcas.Contains(c.MarcaId) || idMarcas.Count == 0)
+               .Where(c => idTamanhos.Contains(c.TamanhoId) || idTamanhos.Count == 0)
+               .Where(c => idTipoProdutos.Contains(c.TipoProdutoId) || idTipoProdutos.Count == 0)
+               .Where(c => idGenero.Contains((int)c.Genero) || idGenero.Count == 0)
+               .Where(c =>
+                   c.Nome.ToLower().Contains(query) ||
+                   c.Descricao.ToLower().Contains(query) ||
+                   c.Marca.Nome.ToLower().Contains(query) ||
+                   c.Cor.Nome.ToLower().Contains(query) ||
+                   c.Tamanho.Nome.ToLower().Contains(query) ||
+                   c.TipoProduto.Nome.ToLower().Contains(query) ||
+                   string.IsNullOrEmpty(query))
+               .OrderByDescending(v => v.ValorVenda )
+               .Skip(pageSize * (pageIndex - 1)).Take(pageSize)
+               .ToListAsync();
+        }
+
+        public async Task<List<Produto>> ObterTodosProdutosFiltradosOrderValorCresc(List<Guid> idCores, List<Guid> idMarcas, List<Guid> idTamanhos, List<Guid> idTipoProdutos, List<int> idGenero, int pageSize, int pageIndex, string query = null)
+        {
+            return await _context.Produtos
+              .AsNoTracking()
+              .Include(m => m.Marca)
+              .Include(t => t.TipoProduto)
+              .Include(c => c.Cor)
+              .Include(c => c.Tamanho)
+              .Where(c => c.removido == false)
+              .Where(c => idCores.Contains(c.CorId) || idCores.Count == 0)
+              .Where(c => idMarcas.Contains(c.MarcaId) || idMarcas.Count == 0)
+              .Where(c => idTamanhos.Contains(c.TamanhoId) || idTamanhos.Count == 0)
+              .Where(c => idTipoProdutos.Contains(c.TipoProdutoId) || idTipoProdutos.Count == 0)
+              .Where(c => idGenero.Contains((int)c.Genero) || idGenero.Count == 0)
+              .Where(c =>
+                  c.Nome.ToLower().Contains(query) ||
+                  c.Descricao.ToLower().Contains(query) ||
+                  c.Marca.Nome.ToLower().Contains(query) ||
+                  c.Cor.Nome.ToLower().Contains(query) ||
+                  c.Tamanho.Nome.ToLower().Contains(query) ||
+                  c.TipoProduto.Nome.ToLower().Contains(query) ||
+                  string.IsNullOrEmpty(query))
+              .OrderBy(v => v.ValorVenda)
+              .Skip(pageSize * (pageIndex - 1)).Take(pageSize)
+              .ToListAsync();
+        }      
 
         public async Task<List<TipoProduto>> ObterTodosTipoProduto()
         {
@@ -170,6 +224,6 @@ namespace LojaVirtual.API.Data.Repository
         public void AtualizarTamanho(Tamanho tamanho)
         {
             _context.Tamanho.Update(tamanho);
-        }        
-    }
+        }       
+    } 
 }

@@ -12,7 +12,9 @@ namespace LojaVirtual.API.Data.Repository
         //Produto
         Task<List<Produto>> ObterTodosProdutos();
         Task<List<Produto>> ObterTodosProdutos(int pageSize, int pageIndex, string query = null);
-        Task<List<Produto>> ObterTodosProdutosFiltrados(List<Guid> idCores, List<Guid> idMarcas, List<Guid> idTamanhos, List<Guid> idTipoProdutos, List<int> idGenero, int pageSize, int pageIndex, string query = null);
+        Task<List<Produto>> ObterTodosProdutosFiltradosOrderDefault(List<Guid> idCores, List<Guid> idMarcas, List<Guid> idTamanhos, List<Guid> idTipoProdutos, List<int> idGenero, int pageSize, int pageIndex, string query = null);
+        Task<List<Produto>> ObterTodosProdutosFiltradosOrderValorDesc(List<Guid> idCores, List<Guid> idMarcas, List<Guid> idTamanhos, List<Guid> idTipoProdutos, List<int> idGenero, int pageSize, int pageIndex, string query = null);
+        Task<List<Produto>> ObterTodosProdutosFiltradosOrderValorCresc(List<Guid> idCores, List<Guid> idMarcas, List<Guid> idTamanhos, List<Guid> idTipoProdutos, List<int> idGenero, int pageSize, int pageIndex, string query = null);       
         Task<Produto> ObterProdutoPorId(Guid id);
         void AdicionarProduto(Produto produto);
         void AtualizarProduto(Produto produto);

@@ -48,10 +48,10 @@ namespace LojaVirtual.API.Controllers
         }
 
         [HttpPost("catalogo/filtroPaginado")]
-        public async Task<PagedResult<ProdutoViewModel>> ObterProdutos([FromBody] List<FiltroViewModel> filtros, int ps = 8, int page = 1, string q = null)
+        public async Task<IActionResult> ObterProdutos([FromBody] List<FiltroViewModel> filtros, int ps = 8, int page = 1, OrdenacaoViewModel ordenacao = 0, string q = null)
         {
             //if (!ModelState.IsValid) return CustomResponse(ModelState);
-            return _mapper.Map<PagedResult<ProdutoViewModel>>(await _produtoService.ObterPorPagina(filtros, ps, page, q));            
+            return CustomResponse(_mapper.Map<PagedResult<ProdutoViewModel>>(await _produtoService.ObterPorPagina(filtros, ps, page, ordenacao, q)));            
         }
 
         [HttpGet("catalogo/produtosPorId/{id}")]

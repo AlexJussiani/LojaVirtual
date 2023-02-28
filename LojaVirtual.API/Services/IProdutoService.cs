@@ -12,6 +12,6 @@ namespace LojaVirtual.API.Services
         Task AdicionarMarca(Marca marca);
         Task AdicionarTipoProduto(TipoProduto tipoProduto);
         Task AdicionarTamanho(Tamanho tamanho);
-        Task<PagedResult<Produto>> ObterPorPagina(List<FiltroViewModel> filtros, int pageSize, int pageIndex, string query = null);
+        Task<PagedResult<Produto>> ObterPorPagina(List<FiltroViewModel> filtros, int pageSize, int pageIndex, OrdenacaoViewModel ordenacao, string query = null);
     }
 }

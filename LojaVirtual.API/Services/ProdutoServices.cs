@@ -44,15 +44,19 @@ namespace LojaVirtual.API.Services
             await PersistirDados(_produtoRepository.UnitOfWork);
         }
 
-        public async Task<PagedResult<Produto>> ObterPorPagina(List<FiltroViewModel> filtros, int pageSize, int pageIndex, string query = null)
+        public async Task<PagedResult<Produto>> ObterPorPagina(List<FiltroViewModel> filtros, int pageSize, int pageIndex, OrdenacaoViewModel ordenacao, string query = null)
         {
+            
             List<Guid> corIds = filtros.Where(c => c.TipoFiltro == TipoFiltroViewModel.COR).SelectMany(i => i.Ids).ToList();
             List<Guid> tipoProdutoIds = filtros.Where(c => c.TipoFiltro == TipoFiltroViewModel.TIPO_PRODUTO).SelectMany(i => i.Ids).ToList();
             List<Guid> tamanhoIds = filtros.Where(c => c.TipoFiltro == TipoFiltroViewModel.TAMANHO).SelectMany(i => i.Ids).ToList();
             List<Guid> marcaIds = filtros.Where(c => c.TipoFiltro == TipoFiltroViewModel.MARCA).SelectMany(i => i.Ids).ToList();
             List<int> generoIds = filtros.Where(c => c.TipoFiltro == TipoFiltroViewModel.GENERO).SelectMany(i => i.GeneroIds).ToList();
 
-            var produtos = await _produtoRepository.ObterTodosProdutosFiltrados(corIds, marcaIds, tamanhoIds, tipoProdutoIds, generoIds, pageSize, pageIndex, query);
+            var produtos = (ordenacao == 0 ? await _produtoRepository.ObterTodosProdutosFiltradosOrderDefault(corIds, marcaIds, tamanhoIds, tipoProdutoIds, generoIds, pageSize, pageIndex, query) :
+                            (int)ordenacao == 1 ? await _produtoRepository.ObterTodosProdutosFiltradosOrderValorCresc(corIds, marcaIds, tamanhoIds, tipoProdutoIds, generoIds, pageSize, pageIndex, query) :
+                            await _produtoRepository.ObterTodosProdutosFiltradosOrderValorDesc(corIds, marcaIds, tamanhoIds, tipoProdutoIds, generoIds, pageSize, pageIndex, query)
+                        );
             return new PagedResult<Produto>()
             {
                 List = produtos,
