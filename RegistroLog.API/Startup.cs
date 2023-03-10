@@ -1,4 +1,3 @@
-using LojaVirtual.API.Configuration;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -8,33 +7,22 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
+using RegistroLog.API.Configuration;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
-namespace LojaVirtual.API
+namespace RegistroLog.API
 {
     public class Startup
     {
-        public IConfiguration Configuration { get; }
-
-        public Startup(IHostEnvironment hostEnvironment)
+        public Startup(IConfiguration configuration)
         {
-            var builder = new ConfigurationBuilder()
-               .SetBasePath(hostEnvironment.ContentRootPath)
-               .AddJsonFile("appsettings.json", true, true)
-               .AddJsonFile($"appsettings.{hostEnvironment.EnvironmentName}.json", true, true)
-               .AddEnvironmentVariables();
-
-            if (hostEnvironment.IsDevelopment())
-            {
-                builder.AddUserSecrets<Startup>();
-            }
-
-            Configuration = builder.Build();
+            Configuration = configuration;
         }
+
+        public IConfiguration Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
@@ -42,14 +30,10 @@ namespace LojaVirtual.API
 
             services.AddApiConfiguration(Configuration);
 
-            services.AddAutoMapper(typeof(Startup));
-
             services.AddControllers();
-               // .AddJsonOptions(o => o.JsonSerializerOptions
-                  //  .ReferenceHandler = ReferenceHandler.Preserve);
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "LojaVirtual.API", Version = "v1" });
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "RegistroLog.API", Version = "v1" });
             });
 
             services.RegisterServices();
@@ -64,10 +48,19 @@ namespace LojaVirtual.API
             {
                 app.UseDeveloperExceptionPage();
                 app.UseSwagger();
-                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "LojaVirtual.API v1"));
+                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "RegistroLog.API v1"));
             }
 
-            app.UseApiConfiguration(env);
+            app.UseHttpsRedirection();
+
+            app.UseRouting();
+
+            app.UseAuthorization();
+
+            app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapControllers();
+            });
         }
     }
 }

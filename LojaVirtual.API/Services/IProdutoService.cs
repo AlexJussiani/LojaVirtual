@@ -1,6 +1,7 @@
 ﻿using Loja.Core.Models;
 using LojaVirtual.API.Models;
 using LojaVirtual.API.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -8,6 +9,7 @@ namespace LojaVirtual.API.Services
 {
     public interface IProdutoService
     {
+        Task<Produto> ObterProdutoPorId(Guid idProduto);
         Task AdicionarProduto(Produto produto);
         Task AdicionarMarca(Marca marca);
         Task AdicionarTipoProduto(TipoProduto tipoProduto);

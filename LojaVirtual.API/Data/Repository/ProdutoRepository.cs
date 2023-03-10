@@ -25,7 +25,7 @@ namespace LojaVirtual.API.Data.Repository
             _context.Marca.Add(marca);
         }
 
-        public void AdicionarProduto(Produto produto)
+        public  void AdicionarProduto(Produto produto)
         {
             _context.Produtos.Add(produto);
         }

@@ -30,6 +30,7 @@ namespace LojaVirtual.API.Models
         public Guid MarcaId { get; set; }
         public Guid CorId { get; set; }
         public Guid TamanhoId { get; set; }
+        
 
         public void CalcularValorProduto()
         {

@@ -24,6 +24,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\LJ.MessageBus\Loja.MessageBus.csproj" />
     <ProjectReference Include="..\Loja.Core\Loja.Core.csproj" />
   </ItemGroup>
 
