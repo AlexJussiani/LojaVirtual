@@ -26,7 +26,7 @@ namespace LojaVirtual.API.Services
         public async Task AdicionarProduto(Produto produto)
         {
             produto.Id = Guid.NewGuid();
-            produto.CalcularValorProduto();
+           // produto.CalcularValorProduto();
 
            _produtoRepository.AdicionarProduto(produto);
             await PersistirDados(_produtoRepository.UnitOfWork);

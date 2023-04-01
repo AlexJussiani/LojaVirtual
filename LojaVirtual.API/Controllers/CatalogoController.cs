@@ -32,20 +32,20 @@ namespace LojaVirtual.API.Controllers
             _produtoService = produtoService;
         }
 
-        [HttpGet("catalogo/produtos")]
-        public async Task<IActionResult> ObterProdutos()
-        {
-            if (!ModelState.IsValid) return CustomResponse(ModelState);
-            return CustomResponse(_mapper.Map<IEnumerable<ProdutoViewModel>> (await _produtoRepository.ObterTodosProdutos()));
-        }
+        //[HttpGet("catalogo/produtos")]
+        //public async Task<IActionResult> ObterProdutos()
+        //{
+        //    if (!ModelState.IsValid) return CustomResponse(ModelState);
+        //    return CustomResponse(_mapper.Map<IEnumerable<ProdutoViewModel>> (await _produtoRepository.ObterTodosProdutos()));
+        //}
 
-        [HttpGet("catalogo/paginado")]
-        public async Task<PagedResult<ProdutoViewModel>> ObterProdutos([FromQuery] int ps = 8, [FromQuery] int page = 1, [FromQuery] string q = null)
-        {
-            //if (!ModelState.IsValid) return CustomResponse(ModelState);
-            return _mapper.Map<PagedResult<ProdutoViewModel>>(await ObterPorPagina(ps, page, q));
+        //[HttpGet("catalogo/paginado")]
+        //public async Task<PagedResult<ProdutoViewModel>> ObterProdutos([FromQuery] int ps = 8, [FromQuery] int page = 1, [FromQuery] string q = null)
+        //{
+        //    //if (!ModelState.IsValid) return CustomResponse(ModelState);
+        //    return _mapper.Map<PagedResult<ProdutoViewModel>>(await ObterPorPagina(ps, page, q));
             
-        }
+        //}
 
         [HttpPost("catalogo/filtroPaginado")]
         public async Task<IActionResult> ObterProdutos([FromBody] List<FiltroViewModel> filtros, int ps = 8, int page = 1, OrdenacaoViewModel ordenacao = 0, string q = null)
